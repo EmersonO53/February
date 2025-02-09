@@ -4,80 +4,65 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portal Universitario</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-            background-color: #f0f0f0;
+            background: url('https://live.staticflickr.com/8596/16431827277_ccc7721a9a_b.jpg') no-repeat center center fixed;
+            background-size: cover;
             text-align: center;
             font-family: Arial, sans-serif;
             margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 400px;
+            margin: auto;
             padding: 20px;
-            transition: background-color 1s;
-        }
-        h1 {
-            color: #333;
-        }
-        .hidden {
-            display: none;
-        }
-        .question-container {
-            margin-top: 20px;
-        }
-        .btn {
-            padding: 10px 20px;
-            margin: 10px;
-            font-size: 18px;
-            cursor: pointer;
-            border: none;
-            border-radius: 5px;
-        }
-        .btn-yes {
-            background-color: #28a745;
-            color: white;
-        }
-        .btn-no {
-            background-color: #dc3545;
-            color: white;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
             position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .logo {
+            width: 120px;
+            margin-bottom: 15px;
+        }
+        .btn-primary {
+            background-color: #4B0082;
+            border-color: #4B0082;
+        }
+        .btn-primary:hover {
+            background-color: #3A0069;
+            border-color: #3A0069;
         }
     </style>
-</head>
-<body>
-    <h1>Bienvenido al Portal Universitario</h1>
-    <p>Por favor, inicia sesión para acceder a tu cuenta.</p>
-    <input type="text" id="name" placeholder="Ingresa tu nombre">
-    <button class="btn" onclick="register()">Ingresar</button>
-    
-    <div id="content" class="hidden">
-        <h1>¡Sorpresa! 🎉</h1>
-        <p>En realidad, esto es una pregunta muy importante.</p>
-        <h2>¿Quieres ser mi San Valentín? 💖</h2>
-        <div class="question-container">
-            <button class="btn btn-yes" onclick="accept()">Sí</button>
-            <button class="btn btn-no" id="noBtn">No</button>
-        </div>
-    </div>
-    
     <script>
-        function register() {
-            const name = document.getElementById("name").value;
-            if (name.trim() === "") {
-                alert("Por favor, ingresa tu nombre.");
+        function iniciarSesion() {
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+
+            if (username.trim() === "" || password.trim() === "") {
+                alert("Por favor, completa todos los campos.");
                 return;
             }
-            document.body.style.backgroundColor = "#ffccdc";
-            document.querySelector("h1").textContent = "¡Hola, " + name + "!";
-            document.getElementById("content").classList.remove("hidden");
+
+            // Simula un inicio de sesión exitoso
+            window.location.href = "encuestas.html";
         }
-        
-        function accept() {
-            alert("¡Sabía que dirías que sí! 💕");
-        }
-        
-        document.getElementById("noBtn").addEventListener("mouseover", function() {
-            this.style.left = Math.random() * window.innerWidth + "px";
-            this.style.top = Math.random() * window.innerHeight + "px";
-        });
     </script>
+</head>
+<body>
+    <div class="container">
+        <img src="https://www.iberonex.com/wp-content/uploads/2024/09/logo_unae.png" alt="Logo Universidad" class="logo">
+        <h1 class="mb-3">Iniciar Sesión</h1>
+        <p>Por favor, ingresa tus credenciales para continuar.</p>
+        <input type="text" id="username" class="form-control mb-3" placeholder="Usuario">
+        <input type="password" id="password" class="form-control mb-3" placeholder="Contraseña">
+        <button class="btn btn-primary w-100" onclick="iniciarSesion()">Iniciar Sesión</button>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-
