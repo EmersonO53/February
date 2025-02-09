@@ -3,47 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para Mi Amor 💖</title>
+    <title>Feliz San Valentín 💖</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            background-color: #ffccdc;
             text-align: center;
-            background-color: #ffe6e6;
+            font-family: Arial, sans-serif;
             margin: 0;
-            padding: 20px;
+            overflow: hidden;
         }
-        .card {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-            display: inline-block;
+        h1 {
+            color: #d63384;
             margin-top: 50px;
-            max-width: 400px;
-            animation: fadeIn 2s ease-in-out;
         }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
+        p {
+            color: #6d214f;
+            font-size: 20px;
         }
         .heart {
+            position: absolute;
             color: red;
-            font-size: 50px;
-            animation: heartbeat 1.5s infinite;
+            font-size: 20px;
+            animation: floatUp 4s linear infinite;
         }
-        @keyframes heartbeat {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-            100% { transform: scale(1); }
+        @keyframes floatUp {
+            from {
+                transform: translateY(100vh);
+                opacity: 1;
+            }
+            to {
+                transform: translateY(-10vh);
+                opacity: 0;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="card">
-        <h2>Para Mi Amor ❤️</h2>
-        <p>Feliz San Valentín, mi amor. Cada día a tu lado es un regalo. Te amo mucho. 💖</p>
-        <div class="heart">💘</div>
-        <p><em>Siempre juntos 💑</em></p>
-    </div>
+    <h1>💖 Feliz San Valentín, Mi Amor 💖</h1>
+    <p>Eres lo mejor que me ha pasado. ¡Te amo mucho! 💕</p>
+    
+    <script>
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.innerHTML = '❤️';
+            document.body.appendChild(heart);
+            
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 2 + 3) + 's';
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 4000);
+        }
+        setInterval(createHeart, 300);
+    </script>
 </body>
 </html>
