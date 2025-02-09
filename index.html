@@ -3,60 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Feliz San Valentín 💖</title>
+    <title>Portal Universitario</title>
     <style>
         body {
-            background-color: #ffccdc;
+            background-color: #f0f0f0;
             text-align: center;
             font-family: Arial, sans-serif;
             margin: 0;
-            overflow: hidden;
+            padding: 20px;
+            transition: background-color 1s;
         }
         h1 {
-            color: #d63384;
-            margin-top: 50px;
+            color: #333;
         }
-        p {
-            color: #6d214f;
-            font-size: 20px;
+        .hidden {
+            display: none;
         }
-        .heart {
+        .question-container {
+            margin-top: 20px;
+        }
+        .btn {
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 18px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+        }
+        .btn-yes {
+            background-color: #28a745;
+            color: white;
+        }
+        .btn-no {
+            background-color: #dc3545;
+            color: white;
             position: absolute;
-            color: red;
-            font-size: 20px;
-            animation: floatUp 4s linear infinite;
-        }
-        @keyframes floatUp {
-            from {
-                transform: translateY(100vh);
-                opacity: 1;
-            }
-            to {
-                transform: translateY(-10vh);
-                opacity: 0;
-            }
         }
     </style>
 </head>
 <body>
-    <h1>💖 Feliz San Valentín, Mi Amor 💖</h1>
-    <p>Eres lo mejor que me ha pasado. ¡Te amo mucho! 💕</p>
+    <h1>Bienvenido al Portal Universitario</h1>
+    <p>Por favor, inicia sesión para acceder a tu cuenta.</p>
+    <input type="text" id="name" placeholder="Ingresa tu nombre">
+    <button class="btn" onclick="register()">Ingresar</button>
+    
+    <div id="content" class="hidden">
+        <h1>¡Sorpresa! 🎉</h1>
+        <p>En realidad, esto es una pregunta muy importante.</p>
+        <h2>¿Quieres ser mi San Valentín? 💖</h2>
+        <div class="question-container">
+            <button class="btn btn-yes" onclick="accept()">Sí</button>
+            <button class="btn btn-no" id="noBtn">No</button>
+        </div>
+    </div>
     
     <script>
-        function createHeart() {
-            const heart = document.createElement('div');
-            heart.className = 'heart';
-            heart.innerHTML = '❤️';
-            document.body.appendChild(heart);
-            
-            heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.animationDuration = (Math.random() * 2 + 3) + 's';
-            
-            setTimeout(() => {
-                heart.remove();
-            }, 4000);
+        function register() {
+            const name = document.getElementById("name").value;
+            if (name.trim() === "") {
+                alert("Por favor, ingresa tu nombre.");
+                return;
+            }
+            document.body.style.backgroundColor = "#ffccdc";
+            document.querySelector("h1").textContent = "¡Hola, " + name + "!";
+            document.getElementById("content").classList.remove("hidden");
         }
-        setInterval(createHeart, 300);
+        
+        function accept() {
+            alert("¡Sabía que dirías que sí! 💕");
+        }
+        
+        document.getElementById("noBtn").addEventListener("mouseover", function() {
+            this.style.left = Math.random() * window.innerWidth + "px";
+            this.style.top = Math.random() * window.innerHeight + "px";
+        });
     </script>
 </body>
 </html>
+
