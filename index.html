@@ -3,128 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portal Universitario</title>
+    <title>Página San Valentín</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
             background: url('https://live.staticflickr.com/8596/16431827277_ccc7721a9a_b.jpg') no-repeat center center fixed;
             background-size: cover;
             font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
         }
         .container {
             max-width: 400px;
             margin: auto;
             padding: 20px;
-            background: white;
+            background: rgba(255, 255, 255, 0.8);
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-        .logo {
-            width: 120px;
-            margin-bottom: 15px;
+            margin-top: 100px;
         }
         .btn-primary {
-            background-color: #4B0082;
-            border-color: #4B0082;
+            background-color: #E63946;
+            border-color: #E63946;
         }
         .btn-primary:hover {
-            background-color: #3A0069;
-            border-color: #3A0069;
-        }
-        .btn-success {
-            background-color: #28a745;
-            border-color: #28a745;
-        }
-        .btn-success:hover {
-            background-color: #218838;
-            border-color: #1e7e34;
-        }
-        .form-container {
-            max-width: 600px;
-            margin: auto;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-            margin-top: 50px;
+            background-color: #C82333;
+            border-color: #C82333;
         }
     </style>
-    <script>
-        function iniciarSesion() {
-            const username = document.getElementById("username").value;
-            const password = document.getElementById("password").value;
-
-            // Validar si los campos de usuario y contraseña están vacíos
-            if (username.trim() === "" || password.trim() === "") {
-                alert("Por favor, completa todos los campos.");
-                return;
-            }
-
-            // Simula un inicio de sesión exitoso
-            document.body.style.background = 'url("https://live.staticflickr.com/8596/16431827277_ccc7721a9a_b.jpg") no-repeat center center fixed';
-            document.body.style.backgroundSize = 'cover';
-
-            // Redirigir a la página de encuestas
-            window.location.href = "#encuestas";  // Ahora redirige a la sección de encuestas que está en la misma página
-        }
-
-        function enviarEncuesta() {
-            alert("Gracias por completar la encuesta.");
-            // Aquí podrías agregar más lógica para enviar los datos a un servidor si es necesario
-        }
-    </script>
 </head>
 <body>
-
-    <!-- Iniciar Sesión -->
     <div class="container">
-        <img src="https://www.iberonex.com/wp-content/uploads/2024/09/logo_unae.png" alt="Logo Universidad" class="logo">
-        <h1 class="mb-3">Iniciar Sesión</h1>
-        <p>Por favor, ingresa tus credenciales para continuar.</p>
-        <input type="text" id="username" class="form-control mb-3" placeholder="Usuario" required>
-        <input type="password" id="password" class="form-control mb-3" placeholder="Contraseña" required>
-        <button class="btn btn-primary w-100" onclick="iniciarSesion()">Iniciar Sesión</button>
-    </div>
-
-    <!-- Encuestas -->
-    <div id="encuestas" class="form-container">
-        <h1 class="text-center mb-4">Encuestas Hot 💕</h1>
-        <form onsubmit="enviarEncuesta(); return false;">
+        <h1 class="mb-4 text-center">Bienvenida, amor 💖</h1>
+        <p class="text-center">Por favor, ingresa tu nombre para empezar:</p>
+        <form id="nombreForm" onsubmit="guardarNombre(); return false;">
             <div class="mb-3">
-                <label class="form-label">1. ¿Qué lugar sería ideal para una cita romántica?</label>
-                <input type="text" name="pregunta_1" class="form-control" placeholder="Escribe tu respuesta..." required>
+                <input type="text" id="nombre" class="form-control" placeholder="Tu nombre" required>
             </div>
-            <div class="mb-3">
-                <label class="form-label">2. ¿Cuál es tu fantasía más emocionante?</label>
-                <input type="text" name="pregunta_2" class="form-control" placeholder="Escribe tu respuesta..." required>
-            </div>
-            <div class="mb-3">
-                <label class="form-label">3. ¿Qué canción describe mejor tu forma de amar?</label>
-                <input type="text" name="pregunta_3" class="form-control" placeholder="Escribe tu respuesta..." required>
-            </div>
-            <div class="mb-3">
-                <label class="form-label">4. Si pudieras planear una noche perfecta, ¿cómo sería?</label>
-                <textarea name="pregunta_4" class="form-control" rows="3" placeholder="Escribe tu respuesta..." required></textarea>
-            </div>
-            <div class="mb-3">
-                <label class="form-label">5. ¿Te atreverías a probar algo nuevo juntos?</label>
-                <select name="pregunta_5" class="form-select" required>
-                    <option value="sí">Sí</option>
-                    <option value="no">No</option>
-                    <option value="depende">Depende</option>
-                </select>
-            </div>
-            <button type="submit" class="btn btn-success w-100">Enviar Respuestas</button>
+            <button type="submit" class="btn btn-primary w-100">Iniciar Encuesta</button>
         </form>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function guardarNombre() {
+            const nombre = document.getElementById("nombre").value;
+            if (nombre.trim() !== "") {
+                localStorage.setItem("nombre", nombre); // Guardar el nombre en el almacenamiento local
+                window.location.href = "encuesta.html"; // Redirigir a la página de la encuesta
+            } else {
+                alert("Por favor, ingresa tu nombre.");
+            }
+        }
+    </script>
 </body>
 </html>
-
